@@ -6,10 +6,11 @@
     <h1>Add Category</h1>
     <hr>
 
-    <form>
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
         <div class="mb-3">
           <label for="category-name" class="form-label">Category Name</label>
-          <input type="text" class="form-control" id="category-name">
+          <input type="text" class="form-control" id="category-name" name="category_name">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
