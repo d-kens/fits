@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function() {
     return view('admin.dashboard');
 });
+
+// categories
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 

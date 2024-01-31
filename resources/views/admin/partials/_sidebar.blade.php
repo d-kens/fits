@@ -32,8 +32,8 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <a class="nav-link" href="{{ route('categories') }}">
+            <i class="fas fa-folder"></i>
             <span>Categories</span></a>
     </li>
 
@@ -45,7 +45,7 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-list"></i>
             <span>Users</span></a>
     </li>
 
