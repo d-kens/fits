@@ -16,7 +16,8 @@
         </div>
 
         <div class="mb-3">
-            <select name="category" class="form-select form-select-lg" style="width: 100%">
+            <label for="select-category" class="form-label">select category</label>
+            <select class="custom-select" id="select-category" name="category">
                 <option disabled>select category</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->category_id }}" {{ $subcategory->category == $category->category_id ? 'selected' : '' }}>
