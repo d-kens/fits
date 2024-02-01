@@ -17,45 +17,61 @@
         </div>
     @endif
 
-    <table class="table table-hover">
-        <thead class="table-primary">
-            <tr>
-                <th>#</th>
-                <th>category name</th>
-                <th>is deleted</th>
-                <th>created at</th>
-                <th>update at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if(count($categories) > 0)
-                @foreach($categories as $category)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $category->category_name }}</td>
-                        <td>{{ $category->is_deleted ? 'Yes' : 'No' }}</td>
-                        <td>{{ $category->created_at }}</td>
-                        <td>{{ $category->updated_at }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('categories.show', $category->category_id) }}" type="button" class="btn btn-secondary">Details</a>
-                                <a href="{{ route('categories.edit', $category->category_id) }}" type="button" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('categories.destroy', $category->category_id) }}" method="POST" type="button">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-0">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="6">No categories found.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>category name</th>
+                            <th>is deleted</th>
+                            <th>created at</th>
+                            <th>update at</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>category name</th>
+                            <th>is deleted</th>
+                            <th>created at</th>
+                            <th>update at</th>
+                            <th>actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @if(count($categories) > 0)
+                            @foreach($categories as $category)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $category->category_name }}</td>
+                                    <td>{{ $category->is_deleted ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $category->created_at }}</td>
+                                    <td>{{ $category->updated_at }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ route('categories.edit', $category->category_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
+                                            <form action="{{ route('categories.destroy', $category->category_id) }}" method="POST" type="button">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger m-0">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6">No categories found.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
 
 @endsection

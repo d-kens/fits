@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h2>z
+    <h2>
         fits ecommerce store. Comming Sooon!!!
     </h2>
 
