@@ -6,7 +6,7 @@
     <h1>Add Subcategory</h1>
     <hr>
 
-    <form action="{{ route('subcategory.store') }}" method="POST">
+    <form action="{{ route('admin.subcategory.store') }}" method="POST">
         @csrf
         <div class="mb-3">
           <label for="subcategory-name" class="form-label">category name</label>

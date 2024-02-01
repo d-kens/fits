@@ -7,7 +7,7 @@
     <h1>Edit Subcategory</h1>
     <hr>
 
-    <form action="{{ route('subcategory.update', $subcategory->subcategory_id)}}" method="POST">
+    <form action="{{ route('admin.subcategory.update', $subcategory->subcategory_id)}}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">

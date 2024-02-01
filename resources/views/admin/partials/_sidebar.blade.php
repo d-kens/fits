@@ -32,13 +32,13 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('categories') }}">
+        <a class="nav-link" href="{{ route('admin.categories') }}">
             <i class="fas fa-folder"></i>
             <span>Categories</span></a>
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('subcategories') }}">
+        <a class="nav-link" href="{{ route('admin.subcategories') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Sub Categries</span></a>
     </li>

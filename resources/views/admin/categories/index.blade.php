@@ -6,7 +6,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         {{-- <h3 class="mb-0">Categories List</h3> --}}
-        <a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Add Category</a>
     </div>
 
     <hr>
@@ -52,8 +52,8 @@
                                     <td>{{ $category->updated_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('categories.edit', $category->category_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
-                                            <form action="{{ route('categories.destroy', $category->category_id) }}" method="POST" type="button">
+                                            <a href="{{ route('admin.categories.edit', $category->category_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
+                                            <form action="{{ route('admin.categories.destroy', $category->category_id) }}" method="POST" type="button">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger m-0">Delete</button>

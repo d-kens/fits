@@ -6,7 +6,7 @@
     <h1>Add Category</h1>
     <hr>
 
-    <form action="{{ route('categories.update', $category->category_id)}}" method="POST">
+    <form action="{{ route('admin.categories.update', $category->category_id)}}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
