@@ -14,11 +14,6 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.index', ['subcategories' => $subcategories]);
     }
 
-    // show a single subcategory
-    // public function show($subcategory_id) {
-    //     $subcategory = SubCategory::findOrFail($subcategory_id);
-    // }
-
     // show create form
     public function create() {
         $categories = Category::all();
@@ -43,11 +38,7 @@ class SubCategoryController extends Controller
         $categories = Category::all();
         $subcategory = SubCategory::findOrFail($subcategory_id);
 
-        /*
-        ! A way to to pass the categories and subcategories
-
-        */
-        return view('admin.subcategory.edit', compact('subcategory'));
+        return view('admin.subcategory.edit', compact('categories','subcategory'));
 
     }
 

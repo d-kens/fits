@@ -1,9 +1,10 @@
 @extends('admin.layout.admin')
 
-@section('title', 'Categories')
+@section('title', 'Subcategories')
+
 
 @section('contents')
-    <h1>Add Category</h1>
+    <h1>Edit Subcategory</h1>
     <hr>
 
     <form action="{{ route('subcategory.update', $subcategory->subcategory_id)}}" method="POST">
@@ -16,9 +17,11 @@
 
         <div class="mb-3">
             <select name="category" class="form-select form-select-lg" style="width: 100%">
-                <option selected>select category</option>
+                <option disabled>select category</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                    <option value="{{ $category->category_id }}" {{ $subcategory->category == $category->category_id ? 'selected' : '' }}>
+                        {{ $category->category_name }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -29,3 +32,5 @@
 
 
 @endsection
+
+
