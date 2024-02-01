@@ -18,7 +18,7 @@ return new class extends Migration
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
 
-            $table->foreign('category')->references('category_id')->on('tbl_categories');
+            $table->foreign('category')->references('category_id')->on('tbl_categories')->onDelete('cascade');
         });
     }
 
