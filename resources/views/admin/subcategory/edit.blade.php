@@ -4,7 +4,7 @@
 
 
 @section('contents')
-    <h1>Edit Subcategory</h1>
+    <h5>Edit Subcategory</h5>
     <hr>
 
     <form action="{{ route('admin.subcategory.update', $subcategory->subcategory_id)}}" method="POST">
@@ -13,6 +13,9 @@
         <div class="mb-3">
           <label for="subcategory-name" class="form-label" >subcategory name</label>
           <input type="text" class="form-control" id="subcategory-name" name="subcategory_name" value="{{ $subcategory->subcategory_name }}">
+          @error('subcategory_name')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
         </div>
 
         <div class="mb-3">
@@ -25,6 +28,9 @@
                     </option>
                 @endforeach
             </select>
+            @error('category')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
 
 

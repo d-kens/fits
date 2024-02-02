@@ -3,7 +3,7 @@
 @section('title', 'Categories')
 
 @section('contents')
-    <h1>Edit Category</h1>
+    <h5>Edit Category</h5>
     <hr>
 
     <form action="{{ route('admin.category.update', $category->category_id)}}" method="POST">

@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function() {
     // analytics routes
     Route::get('/dashboard', function() {
-        return view('admin.dashboard'); // ! To work on this later
+        return view('admin.dashboard');
     })->name('admin.dashboard');
 
     // category routes

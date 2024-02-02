@@ -46,7 +46,7 @@ class CategoryController extends Controller
         try {
             // validate the request data
             $validatedData = $request->validate([
-                'category_name' => 'required|string|max:25|unique:tbl_categories'
+                'category_name' => 'required|string|max:25|unique:tbl_categories,category_name'
             ]);
 
             // check if the categeory to be updated exists

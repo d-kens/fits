@@ -40,7 +40,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.subcategories') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Sub Categries</span></a>
+            <span>Subcategories</span></a>
     </li>
 
     <li class="nav-item active">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SubCategoryController extends Controller
 {
@@ -23,15 +24,20 @@ class SubCategoryController extends Controller
 
     // store subcategory data
     public function store(Request $request) {
-        $subcategory = new SubCategory();
+        // validate the request data
+        $validatedData = $request->validate([
+            'subcategory_name' => 'required|string',
+            'category' => 'required|exists:tbl_categories,category_id',
+        ]);
 
-        $subcategory->subcategory_name = $request->input('subcategory_name');
-        $subcategory->category = $request->input('category');
+        // save the subcategory to the database
+        $subcategory = new SubCategory();
+        $subcategory->subcategory_name = $validatedData['subcategory_name'];
+        $subcategory->category = $validatedData['category'];
 
         $subcategory->save();
 
-        return redirect()->route('subcategories')->with('success', 'category added succesfully');
-
+        return redirect()->route('admin.subcategories')->with('success', 'subcategory added succesfully');
     }
 
     // show edit form
@@ -45,25 +51,42 @@ class SubCategoryController extends Controller
 
     // update subcategory data
     public function update(Request $request, $subcategory_id) {
-        $subcategory = SubCategory::findOrFail($subcategory_id);
+        try {
+            // validate the request data
+            $validatedData = $request->validate([
+                'subcategory_name' => 'required|string',
+                'category' => 'required|exists:tbl_categories,category_id',
+            ]);
 
-        $subcategory->subcategory_name = $request->input('subcategory_name');
-        $subcategory->category = $request->input('category');
+            // check if the subcategory exists
+            $subcategory = SubCategory::findOrFail($subcategory_id);
 
+            // update
+            $subcategory->subcategory_name = $validatedData['subcategory_name'];
+            $subcategory->category = $validatedData['category'];
 
-        $subcategory->save();
+            $subcategory->save();
 
-        return redirect()->route('subcategories')->with('success', 'subcategory updated successfully');
+            return redirect()->route('admin.subcategories')->with('success', 'subcategory updated succesfully');
+
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.subcategories')->with('error', 'Subcategory not found');
+        }
     }
 
     // delete subcategory
     public function destroy($subcategory_id) {
-        $subcategory = SubCategory::findOrFail($subcategory_id);
+        try {
+            // find the subcategory by its ID
+            $subcategory = SubCategory::findOrFail($subcategory_id);
 
-        $subcategory->is_deleted = 1;
+            // soft delete the subcategory
+            $subcategory->delete();
 
-        $subcategory->save();
+            return redirect()->route('admin.subcategories')->with('success', 'subcategory deleted successfully');
 
-        return redirect()->route('subcategories')->with('success', 'subcategory deleted successfully');
+        } catch (ModelNotFoundException $e){
+            return redirect()->route('admin.subcategories')->with('error', 'Category not found');
+        }
     }
 }

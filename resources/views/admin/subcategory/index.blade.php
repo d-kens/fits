@@ -26,23 +26,12 @@
                             <th>#</th>
                             <th>subcategory name</th>
                             <th>category name</th>
-                            <th>is deleted</th>
+                            <th>deleted at</th>
                             <th>created at</th>
                             <th>update at</th>
                             <th>actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>subcategory name</th>
-                            <th>category name</th>
-                            <th>is deleted</th>
-                            <th>created at</th>
-                            <th>update at</th>
-                            <th>actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         @if (count($subcategories) > 0)
                             @foreach ($subcategories as $subcategory)
@@ -50,7 +39,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $subcategory->subcategory_name }}</td>
                                     <td>{{ $subcategory->category }}</td>
-                                    <td>{{ $subcategory->is_deleted ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $subcategory->deleted_at ? 'yes' : 'no' }}</td>
                                     <td>{{ $subcategory->created_at }}</td>
                                     <td>{{ $subcategory->updated_at }}</td>
                                     <td>

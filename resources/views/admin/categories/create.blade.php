@@ -3,7 +3,7 @@
 @section('title', 'Categories')
 
 @section('contents')
-    <h1>Add Category</h1>
+    <h5>Add Category</h5>
     <hr>
 
     <form action="{{ route('admin.category.store') }}" method="POST">
