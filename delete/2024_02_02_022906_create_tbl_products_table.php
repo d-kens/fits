@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('subcategory_id')->nullable(false);
             $table->unsignedInteger('added_by')->nullable(false);
             $table->tinyInteger('is_deleted')->default(0);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('subcategory_id')->references('subcategory_id')->on('tbl_subcategories');
