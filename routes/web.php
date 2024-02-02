@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,7 @@ Route::prefix('admin')->group(function() {
     Route::delete('/subcategory/destroy/{id}', [SubCategoryController::class, 'destroy'])->name('admin.subcategory.destroy');
 
     // product routes
+    Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
 
     // user routes
 

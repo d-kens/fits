@@ -15,7 +15,6 @@ return new class extends Migration
             $table->increments('subcategory_id');
             $table->string('subcategory_name', 25)->nullable(false);
             $table->unsignedInteger('category')->nullable(false);
-            // $table->tinyInteger('is_deleted')->default(0);
             $table->softDeletes();
             $table->timestamps();
 

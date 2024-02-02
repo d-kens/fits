@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('available_quantity')->default(0);
             $table->unsignedInteger('subcategory_id')->nullable(false);
             $table->unsignedInteger('added_by')->nullable(false);
-            $table->tinyInteger('is_deleted')->default(0);
             $table->softDeletes();
             $table->timestamps();
 
