@@ -4,9 +4,10 @@
 
 @section('contents')
 
+
     <div class="d-flex align-items-center justify-content-between">
         {{-- <h3 class="mb-0">Categories List</h3> --}}
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Add Category</a>
+        <a href="{{ route('admin.category.create') }}" class="btn btn-primary">Add Category</a>
     </div>
 
     <hr>
@@ -25,35 +26,25 @@
                         <tr>
                             <th>#</th>
                             <th>category name</th>
-                            <th>is deleted</th>
+                            <th>deleted</th>
                             <th>created at</th>
                             <th>update at</th>
                             <th>actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>category name</th>
-                            <th>is deleted</th>
-                            <th>created at</th>
-                            <th>update at</th>
-                            <th>actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         @if(count($categories) > 0)
                             @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->is_deleted ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $category->deleted_at ? 'yes' : 'no' }}</td>
                                     <td>{{ $category->created_at }}</td>
                                     <td>{{ $category->updated_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('admin.categories.edit', $category->category_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
-                                            <form action="{{ route('admin.categories.destroy', $category->category_id) }}" method="POST" type="button">
+                                            <a href="{{ route('admin.category.edit', $category->category_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
+                                            <form action="{{ route('admin.category.destroy', $category->category_id) }}" method="POST" type="button">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger m-0">Delete</button>
