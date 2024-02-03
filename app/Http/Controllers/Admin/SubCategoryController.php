@@ -14,23 +14,6 @@ class SubCategoryController extends Controller
     public function index() {
         $subcategories = SubCategory::all();
 
-        // ! Can this be done using mutators
-        // fetch category for each subcategory
-        foreach ($subcategories as $subcategory) {
-            try {
-                // fetch corresponding category
-                $category = Category::findOrFail($subcategory->category);
-
-                // replace category id with category name
-                $subcategory->category = $category->category_name;
-
-            } catch (ModelNotFoundException $e) {
-                // handle a case where a category is not found
-                $subcategory->category = 'unknown';
-            }
-        }
-
-
         return view('admin.subcategory.index', ['subcategories' => $subcategories]);
     }
 
@@ -42,13 +25,11 @@ class SubCategoryController extends Controller
 
     // store subcategory data
     public function store(Request $request) {
-        // validate the request data
         $validatedData = $request->validate([
             'subcategory_name' => 'required|string',
             'category' => 'required|exists:tbl_categories,category_id',
         ]);
 
-        // save the subcategory to the database
         $subcategory = new SubCategory();
         $subcategory->subcategory_name = $validatedData['subcategory_name'];
         $subcategory->category = $validatedData['category'];
@@ -69,16 +50,13 @@ class SubCategoryController extends Controller
     // update subcategory data
     public function update(Request $request, $subcategory_id) {
         try {
-            // validate the request data
             $validatedData = $request->validate([
                 'subcategory_name' => 'required|string',
                 'category' => 'required|exists:tbl_categories,category_id',
             ]);
 
-            // check if the subcategory exists
             $subcategory = SubCategory::findOrFail($subcategory_id);
 
-            // update
             $subcategory->subcategory_name = $validatedData['subcategory_name'];
             $subcategory->category = $validatedData['category'];
 
@@ -94,10 +72,8 @@ class SubCategoryController extends Controller
     // delete subcategory
     public function destroy($subcategory_id) {
         try {
-            // find the subcategory by its ID
             $subcategory = SubCategory::findOrFail($subcategory_id);
 
-            // soft delete the subcategory
             $subcategory->delete();
 
             return redirect()->route('admin.subcategories')->with('success', 'subcategory deleted successfully');
