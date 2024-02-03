@@ -19,10 +19,8 @@ return new class extends Migration
             $table->string('password', 60);
             $table->enum('gender', ['male', 'female']);
             $table->unsignedInteger('role')->nullable(false);
-            // $table->tinyInteger('is_deleted')->default(0);
             $table->softDeletes();
             $table->timestamps();
-
             $table->foreign('role')->references('role_id')->on('tbl_roles');
         });
     }

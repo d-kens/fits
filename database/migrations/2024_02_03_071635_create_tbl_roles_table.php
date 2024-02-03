@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
-        Schema::create('tbl_paymenttypes', function (Blueprint $table) {
-            $table->increments('paymenttype_id');
-            $table->string('paymenttype_name', 20);
-            $table->string('description', 40)->nullable();
-            $table->tinyInteger('is_deleted')->default(0);
+        Schema::create('tbl_roles', function (Blueprint $table) {
+            $table->increments('role_id');
+            $table->string('role_name', 15)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_paymenttypes');
+        Schema::dropIfExists('tbl_roles');
     }
 };

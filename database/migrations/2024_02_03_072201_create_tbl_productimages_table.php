@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('product_image', 40);
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('added_by')->nullable();
-            $table->tinyInteger('is_deleted')->default(0);
-
+            $table->softDeletes();
             $table->foreign('product_id')->references('product_id')->on('tbl_products');
             $table->foreign('added_by')->references('user_id')->on('tbl_users');
         });
