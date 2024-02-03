@@ -15,6 +15,17 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     public function subcategories() {
-        return $this->hasMany(SubCategory::class, 'category_id');
+        return $this->hasMany(SubCategory::class, 'category');
+    }
+
+
+    // overrride the delete method
+    // to handle soft deletioon of associated subcategories
+    public function delete() {
+        // soft delete subcategories
+        $this->subcategories()->delete();
+
+        // soft delete category
+        return parent::delete();
     }
 }
