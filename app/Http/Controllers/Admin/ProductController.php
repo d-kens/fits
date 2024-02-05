@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +17,13 @@ class ProductController extends Controller
     // show create form
     public function create() {
         $subcategories = SubCategory::all();
-        return view('admin.products.create', ['subcategories' => $subcategories]);
+        $categories = Category::all();
+
+
+        return view('admin.products.create', [
+            'subcategories' => $subcategories,
+            'categories' => $categories
+        ]);
     }
 
     // store product data

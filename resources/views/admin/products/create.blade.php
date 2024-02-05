@@ -16,7 +16,18 @@
             @enderror
         </div>
 
-        {{-- !select a category. In the subcategories selction options, we will have only subcategories under the selected category--}}
+        {{-- ! select a category. In the subcategories selction options, we will have only subcategories under the selected category--}}
+        @if (count($categories) > 0)
+            <div class="mb-3">
+                <label for="category" class="form-label">select subactegory</label>
+                <select class="custom-select" id="category" name="category">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
+
 
         @if (count($subcategories) > 0)
             <div class="mb-3">
