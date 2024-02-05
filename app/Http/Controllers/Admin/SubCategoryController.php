@@ -25,6 +25,7 @@ class SubCategoryController extends Controller
 
     // store subcategory data
     public function store(Request $request) {
+        // ! Add a validation rule that requires a subcategory name under a specific category should have unique names
         $validatedData = $request->validate([
             'subcategory_name' => 'required|string',
             'category' => 'required|exists:tbl_categories,category_id',

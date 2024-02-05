@@ -48,6 +48,8 @@ Route::prefix('admin')->group(function() {
 
     // product routes
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
+    Route::get('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
 
     // user routes
 

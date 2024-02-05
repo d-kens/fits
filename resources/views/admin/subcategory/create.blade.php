@@ -20,7 +20,6 @@
             <div class="mb-3">
                 <label for="select-category" class="form-label">select category</label>
                 <select class="custom-select" id="select-category" name="category">
-                    <option selected>select category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                     @endforeach

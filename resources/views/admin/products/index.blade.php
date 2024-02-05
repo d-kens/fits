@@ -5,7 +5,7 @@
 @section('contents')
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="" class="btn btn-primary">Add Product</a>
+        <a href="{{ route('admin.product.create') }}" class="btn btn-primary">Add Product</a>
     </div>
 
     <hr>
