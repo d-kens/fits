@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Function to fetch subcategories based on category ID
     function fetchSubcategories(categoryId) {
         // Clear existing subcategory options
-        $('#select-subcategory').empty();
+        $('#select_subcategory').empty();
 
         // Use the correct URL for the AJAX request
         $.ajax({
@@ -10,24 +10,22 @@ $(document).ready(function() {
             type: 'GET',
             success: function(response) {
                 // Populate subcategory options
+                $('#select_subcategory').append('<option value="" selected>Select Subcategory</option>'); // Set "Select Subcategory" as default selected option
                 $.each(response.subcategories, function(index, subcategory) {
-                    $('#select-subcategory').append('<option value="' + subcategory.subcategory_id + '">' + subcategory.subcategory_name + '</option>');
+                    $('#select_subcategory').append('<option value="' + subcategory.subcategory_id + '">' + subcategory.subcategory_name + '</option>');
                 });
             }
         });
     }
 
-    // Fetch default category initially
-    var defaultCategoryId = 1;
-    fetchSubcategories(defaultCategoryId);
+    $('#select_subcategory').append('<option value="" selected>Select Subcategory</option>');
 
     // Event listener for category change
     $('#category').change(function() {
         var categoryId = $(this).val();
-        // console.log(categoryId);
 
-        // Fetch subcategories when category changes
         fetchSubcategories(categoryId);
     });
 });
+
 

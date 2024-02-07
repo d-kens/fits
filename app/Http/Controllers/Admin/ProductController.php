@@ -28,9 +28,18 @@ class ProductController extends Controller
 
     // store product data
     public function store(Request $request) {
-        // validate data
-        dd($request);
+        $validatedData = $request->validate([
+            'product_name' => 'required|string|max:25|unique:tbl_products,product_name',
+            'product_description' => 'nullable|string',
+            'unit_price' => 'required',
+            'available_quantity' => 'required',
+            'subcategory_id' => 'required',
+        ]);
 
+        // add added_by property in the validatedData
+        $validatedData['added_by'] = 1;
+
+        var_dump($validatedData);
     }
 
     // show a single product
