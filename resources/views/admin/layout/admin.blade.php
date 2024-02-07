@@ -119,6 +119,9 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('admin_assets/js/demo/datatables-demo.js') }}"></script>
+
+    <!-- App JS-->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

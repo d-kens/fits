@@ -39,6 +39,7 @@ Route::prefix('admin')->group(function() {
 
     // subcategory routes
     Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('admin.subcategories');
+    Route::get('/subcategories/{categoryId}', [SubCategoryController::class, 'getSubcategoriesByCategoryId'])->name('subcategories-by-catgeoryid');
     Route::get('/subcategory/create', [SubCategoryController::class, 'create'])->name('admin.subcategory.create');
     Route::post('/subcategory/store', [SubCategoryController::class, 'store'])->name('admin.subcategory.store');
     Route::get('/subcategory/show/{id}', [SubCategoryController::class, 'show'])->name('admin.subcategory.show');

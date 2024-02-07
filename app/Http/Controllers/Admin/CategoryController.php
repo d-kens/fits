@@ -69,10 +69,6 @@ class CategoryController extends Controller
             // find the category by its ID
             $category = Category::findOrFail($category_id);
 
-
-            // ! Where a category is deleted (soft delete)
-            // ! Subcategories under it should also be osft deleted
-
             // soft delete the catgeory
             $category->delete();
 

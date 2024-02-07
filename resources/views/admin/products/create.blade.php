@@ -16,11 +16,12 @@
             @enderror
         </div>
 
-        {{-- ! select a category. In the subcategories selction options, we will have only subcategories under the selected category--}}
+
         @if (count($categories) > 0)
             <div class="mb-3">
                 <label for="category" class="form-label">select subactegory</label>
                 <select class="custom-select" id="category" name="category">
+                    <option selected>select category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                     @endforeach
@@ -33,9 +34,7 @@
             <div class="mb-3">
                 <label for="select-subcategory" class="form-label">select subactegory</label>
                 <select class="custom-select" id="select-subcategory" name="subcategory_id">
-                    @foreach ($subcategories as $subcategory)
-                        <option value="{{ $subcategory->subcategory_id }}">{{ $subcategory->subcategory_name }}</option>
-                    @endforeach
+                    {{-- this will be populated dynamically --}}
                 </select>
                 @error('subcategory_id')
                     <div class="text-danger">{{ $message }}</div>
@@ -66,8 +65,6 @@
               <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-
-
     </form>
 
 @endsection

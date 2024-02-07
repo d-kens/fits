@@ -17,6 +17,12 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.index', ['subcategories' => $subcategories]);
     }
 
+    public function getSubcategoriesByCategoryId($category_id) {
+        $subcategories = SubCategory::where('category', $category_id)->get();
+
+        return response()->json(['subcategories' => $subcategories]);
+    }
+
     // show create form
     public function create() {
         $categories = Category::all();
@@ -25,7 +31,6 @@ class SubCategoryController extends Controller
 
     // store subcategory data
     public function store(Request $request) {
-        // ! Add a validation rule that requires a subcategory name under a specific category should have unique names
         $validatedData = $request->validate([
             'subcategory_name' => 'required|string',
             'category' => 'required|exists:tbl_categories,category_id',
