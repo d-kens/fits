@@ -50,6 +50,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger m-0">Delete</button>
                                         </form>
+                                        <a href="{{ route('admin.product.show', $product->product_id) }}" type="button" class="btn btn-info" style="margin-left: 10px">Details</a>
                                     </div>
                                 </td>
                             </tr>

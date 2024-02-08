@@ -32,7 +32,18 @@ class SubCategoryController extends Controller
     // store subcategory data
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'subcategory_name' => 'required|string',
+            'subcategory_name' => [
+                'required',
+                'string',
+                'max:25',
+                function ($attribute, $value, $fail) use ($request) {
+                    $category_id = $request->input('category');
+
+                    if (SubCategory::where('category', $category_id)->where('subcategory_name', $value)->whereNull('deleted_at')->exists()) {
+                        $fail('subcategory name must be unique for the selected category');
+                    }
+                }
+            ],
             'category' => 'required|exists:tbl_categories,category_id',
         ]);
 
@@ -57,7 +68,18 @@ class SubCategoryController extends Controller
     public function update(Request $request, $subcategory_id) {
         try {
             $validatedData = $request->validate([
-                'subcategory_name' => 'required|string',
+                'subcategory_name' => [
+                    'required',
+                    'string',
+                    'max:25',
+                    function ($attribute, $value, $fail) use ($request) {
+                        $category_id = $request->input('category');
+
+                        if (SubCategory::where('category', $category_id)->where('subcategory_name', $value)->whereNull('deleted_at')->exists()) {
+                            $fail($attribute.'must be unique for the selected category');
+                        }
+                    }
+                ],
                 'category' => 'required|exists:tbl_categories,category_id',
             ]);
 

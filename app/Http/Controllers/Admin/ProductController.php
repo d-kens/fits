@@ -50,9 +50,13 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('success', 'product added succesfully');
     }
 
-    // show a single product
-    public function show() {
+    // ! show a single product
+    public function show($product_id) {
+        $product = Product::where('product_id', $product_id)->get();
 
+        var_dump($product);
+
+        return view('admin.products.show', ['product' => $product]);
     }
 
     // show edit form

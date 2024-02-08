@@ -23,7 +23,7 @@ class SubCategory extends Model
         return $this->hasMany(Product::class, 'subcategory_id');
     }
 
-    // Define an accessor for the 'category' attribute
+    
     public function getCategoryAttribute($value)
     {
         try {
