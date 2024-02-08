@@ -33,7 +33,32 @@
                     </thead>
                     <tbody>
 
-                        {{-- ! fetch records from the database --}}
+                        @if (count($products) > 0)
+                        @foreach ($products as $product)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $product->product_name }}</td>
+                                <td>{{ $product->unit_price }}</td>
+                                <td>{{ $product->available_quantity }}</td>
+                                <td>{{ $product->subcategory_id }}</td>
+                                <td>{{ $product->added_by }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
+                                        <form method="POST" type="button">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger m-0">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6">no products found</td>
+                            </tr>
+                        @endif
 
                     </tbody>
 

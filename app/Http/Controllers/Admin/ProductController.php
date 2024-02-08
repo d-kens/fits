@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     // show all products
     public function index() {
-        return view('admin.products.index');
+        $products = Product::all();
+
+
+        return view('admin.products.index', ['products' => $products]);
     }
 
     // show create form
@@ -39,7 +43,10 @@ class ProductController extends Controller
         // add added_by property in the validatedData
         $validatedData['added_by'] = 1;
 
-        var_dump($validatedData);
+        // mass assignment
+        Product::create($validatedData);
+
+        return redirect()->route('admin.products')->with('success', 'product added succesfully');
     }
 
     // show a single product
