@@ -20,7 +20,7 @@ class Category extends Model
 
 
     // overrride the delete method
-    // to handle soft deletioon of associated subcategories
+    // to handle soft deletion of associated subcategories
     public function delete() {
         // soft delete subcategories
         $this->subcategories()->delete();

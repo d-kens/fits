@@ -19,6 +19,10 @@ class SubCategory extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function products() {
+        return $this->hasMany(Product::class, 'subcategory_id');
+    }
+
     // Define an accessor for the 'category' attribute
     public function getCategoryAttribute($value)
     {
@@ -26,10 +30,19 @@ class SubCategory extends Model
 
             $category = Category::findOrFail($value);
             return $category->category_name;
-            
+
         } catch (ModelNotFoundException $e) {
             return 'unknown';
         }
+    }
+
+
+    public function delete() {
+        // soft delete products
+        $this->products()->delete();
+
+        // soft delete category
+        return parent::delete();
     }
 
 

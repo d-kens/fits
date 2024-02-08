@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -67,6 +68,16 @@ class ProductController extends Controller
 
     // delete product
     public function destroy($product_id) {
+        try {
+            $subcategory = Product::findOrFail($product_id);
+
+            $subcategory->delete();
+
+            return redirect()->route('admin.products')->with('success', 'product deleted successfully');
+
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.products')->with('error', 'prouduct not found');
+        }
 
     }
 }

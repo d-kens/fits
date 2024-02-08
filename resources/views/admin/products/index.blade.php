@@ -45,7 +45,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
-                                        <form method="POST" type="button">
+                                        <form action="{{ route('admin.product.destroy', $product->product_id) }}" method="POST" type="button">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger m-0">Delete</button>

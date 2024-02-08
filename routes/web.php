@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
     Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
+    Route::delete('/product/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
 
     // user routes
 

@@ -27,6 +27,12 @@ class Product extends Model
     protected $date = ['deleted_at'];
 
 
+
+    public function subcategory() {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+
+
     public function getSubcategoryIdAttribute($value) {
         try {
             $subcategory = SubCategory::findOrFail($value);
@@ -46,4 +52,5 @@ class Product extends Model
             return 'unknown';
         }
     }
+
 }

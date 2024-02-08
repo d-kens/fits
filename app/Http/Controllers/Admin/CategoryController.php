@@ -72,10 +72,10 @@ class CategoryController extends Controller
             // soft delete the catgeory
             $category->delete();
 
-            return redirect()->route('admin.categories')->with('success', 'Category deleted successfully');
+            return redirect()->route('admin.categories')->with('success', 'category deleted successfully');
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('admin.categories')->with('error', 'Category not found');
+            return redirect()->route('admin.categories')->with('error', 'category not found');
         }
     }
 }
