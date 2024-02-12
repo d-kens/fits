@@ -6,7 +6,7 @@
     <h5>Add Product</h5>
     <hr>
 
-    <form action="{{ route('admin.product.store') }}" method="POST">
+    <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="product_name" class="form-label">product name</label>
@@ -66,6 +66,14 @@
             @enderror
         </div>
 
+
+        <div class="mb-3">
+            <label for="product_image" class="form-label">product image</label>
+            <input type="file" class="form-control" id="product_image" name="product_image">
+            @error('product_image')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
 
         <button type="submit" class="btn btn-primary">Submit</button>

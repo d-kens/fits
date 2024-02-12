@@ -33,19 +33,26 @@ class ProductController extends Controller
 
     // store product data
     public function store(Request $request) {
-        $validatedData = $request->validate([
+
+        dd($request->all());
+
+
+        $request->validate([
             'product_name' => 'required|string|max:25|unique:tbl_products,product_name',
             'product_description' => 'nullable|string',
             'unit_price' => 'required',
             'available_quantity' => 'required',
             'subcategory_id' => 'required',
+            'product_image' => 'required|mimes:jpg,png,jpeg|max:5048'
         ]);
 
-        // add added_by property in the validatedData
-        $validatedData['added_by'] = 1;
 
-        // mass assignment
-        Product::create($validatedData);
+
+        // add added_by property in the validatedData
+        // $validatedData['added_by'] = 1;
+
+        // // mass assignment
+        // Product::create($validatedData);
 
         return redirect()->route('admin.products')->with('success', 'product added succesfully');
     }

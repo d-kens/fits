@@ -14,6 +14,11 @@ class SubCategoryController extends Controller
     public function index() {
         $subcategories = SubCategory::all();
 
+        foreach($subcategories as $subcategory) {
+            echo $subcategory->category. "<br>";
+        }
+
+
         return view('admin.subcategory.index', ['subcategories' => $subcategories]);
     }
 
@@ -65,6 +70,10 @@ class SubCategoryController extends Controller
     }
 
     // update subcategory data
+    /*
+    !There is a bag here when editing
+    !When checking duplicategory name, should check for the subcategory being editted.
+    */
     public function update(Request $request, $subcategory_id) {
         try {
             $validatedData = $request->validate([

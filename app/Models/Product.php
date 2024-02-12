@@ -53,4 +53,11 @@ class Product extends Model
         }
     }
 
+
+
+    //  TODO
+    // 1. Relationship between product and product_images (one to one relationship)
+    // 2. Override the product delete method such that when a product is deleted the product image also goes.
+
+
 }

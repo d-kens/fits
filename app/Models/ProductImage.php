@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class ProductImage extends Model
+{
+    protected $table = "tbl_productimages";
+
+    protected $primaryKey = "productimages_id";
+
+    use SoftDeletes;
+
+    protected $fillable = [
+        'product_image',
+        'product_id',
+        'added_by'
+    ];
+
+    protected $date = ['deleted_at'];
+
+    
+
+
+    // TODO
+    // 1. Relatiosnship between product and product_images
+
+
+
+}

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -14,17 +15,17 @@ class Category extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function subcategories() {
-        return $this->hasMany(SubCategory::class, 'category');
+
+    public function subcategories ():HasMany
+    {
+        return $this->hasMany(SubCategory::class, 'category', 'category_id');
     }
 
 
-    
+
     public function delete() {
-        // soft delete subcategories
         $this->subcategories()->delete();
 
-        // soft delete category
         return parent::delete();
     }
 }
