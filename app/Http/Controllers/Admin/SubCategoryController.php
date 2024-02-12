@@ -14,11 +14,6 @@ class SubCategoryController extends Controller
     public function index() {
         $subcategories = SubCategory::all();
 
-        foreach($subcategories as $subcategory) {
-            echo $subcategory->category. "<br>";
-        }
-
-
         return view('admin.subcategory.index', ['subcategories' => $subcategories]);
     }
 

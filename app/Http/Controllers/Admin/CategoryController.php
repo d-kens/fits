@@ -11,7 +11,19 @@ class CategoryController extends Controller
 {
     // show all categories
     public function index() {
+        // ! Commented code is eager loading
+        // $categories = Category::with('subcategories')->get();
+
+        // foreach ($categories as $category) {
+        //     echo "Category: {$category->category_name}\n";
+
+        //     foreach ($category->subcategories as $subcategory) {
+        //         echo "Subcategory: {$subcategory->subcategory_name}\n";
+        //     }
+        // }
+
         $categories = Category::all();
+
         return view('admin.categories.index', ['categories' => $categories]);
     }
 

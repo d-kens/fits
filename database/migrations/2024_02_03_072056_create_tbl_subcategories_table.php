@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_subcategories', function (Blueprint $table) {
             $table->increments('subcategory_id');
             $table->string('subcategory_name', 25)->nullable(false);
-            $table->unsignedInteger('category')->nullable(false);
+            $table->unsignedInteger('category_id')->nullable(false);
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('category')->references('category_id')->on('tbl_categories')->onDelete('cascade');

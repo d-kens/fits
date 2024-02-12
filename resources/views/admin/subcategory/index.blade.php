@@ -38,7 +38,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $subcategory->subcategory_name }}</td>
-                                    <td>{{ $subcategory->category }}</td>
+                                    <td>{{ $subcategory->category->category_name }}</td>
                                     <td>{{ $subcategory->deleted_at ? 'yes' : 'no' }}</td>
                                     <td>{{ $subcategory->created_at }}</td>
                                     <td>{{ $subcategory->updated_at }}</td>
