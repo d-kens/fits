@@ -20,15 +20,14 @@
 
         <div class="mb-3">
             <label for="select-category" class="form-label">select category</label>
-            <select class="custom-select" id="select-category" name="category">
-                <option disabled>select category</option>
+            <select class="custom-select" id="select-category" name="category_id">
                 @foreach ($categories as $category)
-                    <option value="{{ $category->category_id }}" {{ $subcategory->category == $category->category_id ? 'selected' : '' }}>
+                    <option value="{{ $category->category_id }}" {{ $subcategory->category_id == $category->category_id ? 'selected' : '' }}>
                         {{ $category->category_name }}
                     </option>
                 @endforeach
             </select>
-            @error('category')
+            @error('category_id')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>

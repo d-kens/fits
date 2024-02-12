@@ -37,19 +37,19 @@ class SubCategoryController extends Controller
                 'string',
                 'max:25',
                 function ($attribute, $value, $fail) use ($request) {
-                    $category_id = $request->input('category');
+                    $category_id = $request->input('category_id');
 
-                    if (SubCategory::where('category', $category_id)->where('subcategory_name', $value)->whereNull('deleted_at')->exists()) {
+                    if (SubCategory::where('category_id', $category_id)->where('subcategory_name', $value)->whereNull('deleted_at')->exists()) {
                         $fail('subcategory name must be unique for the selected category');
                     }
                 }
             ],
-            'category' => 'required|exists:tbl_categories,category_id',
+            'category_id' => 'required|exists:tbl_categories,category_id',
         ]);
 
         $subcategory = new SubCategory();
         $subcategory->subcategory_name = $validatedData['subcategory_name'];
-        $subcategory->category = $validatedData['category'];
+        $subcategory->category_id = $validatedData['category_id'];
 
         $subcategory->save();
 
@@ -65,10 +65,6 @@ class SubCategoryController extends Controller
     }
 
     // update subcategory data
-    /*
-    !There is a bag here when editing
-    !When checking duplicategory name, should check for the subcategory being editted.
-    */
     public function update(Request $request, $subcategory_id) {
         try {
             $validatedData = $request->validate([
@@ -76,21 +72,25 @@ class SubCategoryController extends Controller
                     'required',
                     'string',
                     'max:25',
-                    function ($attribute, $value, $fail) use ($request) {
-                        $category_id = $request->input('category');
+                    function ($attribute, $value, $fail) use ($request, $subcategory_id) {
+                        $category_id = $request->input('category_id');
 
-                        if (SubCategory::where('category', $category_id)->where('subcategory_name', $value)->whereNull('deleted_at')->exists()) {
-                            $fail($attribute.'must be unique for the selected category');
+                        if (SubCategory::where('category_id', $category_id)
+                                        ->where('subcategory_name', $value)
+                                        ->whereNull('deleted_at')
+                                        ->where('subcategory_id', '!=', $subcategory_id) // Exclide the current subcategory being edited
+                                        ->exists()) {
+                            $fail($attribute.' must be unique for the selected category');
                         }
                     }
                 ],
-                'category' => 'required|exists:tbl_categories,category_id',
+                'category_id' => 'required|exists:tbl_categories,category_id',
             ]);
 
             $subcategory = SubCategory::findOrFail($subcategory_id);
 
             $subcategory->subcategory_name = $validatedData['subcategory_name'];
-            $subcategory->category = $validatedData['category'];
+            $subcategory->category_id = $validatedData['category_id'];
 
             $subcategory->save();
 
