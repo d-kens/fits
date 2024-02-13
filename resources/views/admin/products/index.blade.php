@@ -26,6 +26,7 @@
                             <th>product name</th>
                             <th>unit price</th>
                             <th>available quantity</th>
+                            <th>category</th>
                             <th>subcategory</th>
                             <th>added by</th>
                             <th>actions</th>
@@ -40,7 +41,8 @@
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->unit_price }}</td>
                                 <td>{{ $product->available_quantity }}</td>
-                                <td>{{ $product->subcategory_id }}</td>
+                                <td>{{ $product->subcategory->category->category_name }}</td>
+                                <td>{{ $product->subcategory->subcategory_name }}</td>
                                 <td>{{ $product->added_by }}</td>
                                 <td>
                                     <div class="btn-group">
