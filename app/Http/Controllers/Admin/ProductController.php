@@ -26,10 +26,22 @@ class ProductController extends Controller
     }
 
     // store product data
+    // required|string|max:25|unique:tbl_products,product_name
     public function store(Request $request) {
 
         $request->validate([
-            'product_name' => 'required|string|max:25|unique:tbl_products,product_name',
+            'product_name' => [
+                'required',
+                'string',
+                'max:25',
+                function ($attribute, $value, $fail) use ($request) {
+                    $subcategory_id = $request->input('subcategory_id');
+
+                    if(Product::where('subcategory_id', $subcategory_id)->where('product_name', $value)->whereNull('deleted_at')->exists()) {
+                        $fail('product name must be unique for the selected subcategory');
+                    }
+                }
+            ],
             'product_description' => 'nullable|string',
             'unit_price' => 'required',
             'available_quantity' => 'required',
