@@ -30,17 +30,17 @@
         @endif
 
 
-        @if (count($subcategories) > 0)
-            <div class="mb-3">
-                <label for="select_subcategory" class="form-label">select subactegory</label>
-                <select class="custom-select" id="select_subcategory" name="subcategory_id">
-                    {{-- this will be populated dynamically --}}
-                </select>
-                @error('subcategory_id')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-        @endif
+
+        <div class="mb-3">
+            <label for="select_subcategory" class="form-label">select subactegory</label>
+            <select class="custom-select" id="select_subcategory" name="subcategory_id">
+                {{-- this will be populated dynamically --}}
+            </select>
+            @error('subcategory_id')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
 
         <div class="mb-3">
             <label for="product_description" class="form-label">product description</label>

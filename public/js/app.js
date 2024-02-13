@@ -10,7 +10,7 @@ $(document).ready(function() {
             type: 'GET',
             success: function(response) {
                 // Populate subcategory options
-                $('#select_subcategory').append('<option value="" selected>Select Subcategory</option>'); // Set "Select Subcategory" as default selected option
+                $('#select_subcategory').append('<option value="" selected>Select Subcategory</option>');
                 $.each(response.subcategories, function(index, subcategory) {
                     $('#select_subcategory').append('<option value="' + subcategory.subcategory_id + '">' + subcategory.subcategory_name + '</option>');
                 });
@@ -27,5 +27,6 @@ $(document).ready(function() {
         fetchSubcategories(categoryId);
     });
 });
+
 
 

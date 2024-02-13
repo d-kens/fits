@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductImage extends Model
@@ -22,12 +22,9 @@ class ProductImage extends Model
 
     protected $date = ['deleted_at'];
 
-    
-
-
-    // TODO
-    // 1. Relatiosnship between product and product_images
-
-
+    public function product():BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
+    }
 
 }
