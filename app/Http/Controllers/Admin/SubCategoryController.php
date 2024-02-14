@@ -78,7 +78,7 @@ class SubCategoryController extends Controller
                         if (SubCategory::where('category_id', $category_id)
                                         ->where('subcategory_name', $value)
                                         ->whereNull('deleted_at')
-                                        ->where('subcategory_id', '!=', $subcategory_id) // Exclide the current subcategory being edited
+                                        ->where('subcategory_id', '!=', $subcategory_id) // Exclude the current subcategory being edited
                                         ->exists()) {
                             $fail($attribute.' must be unique for the selected category');
                         }

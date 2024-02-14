@@ -47,7 +47,19 @@ class CategoryController extends Controller
         try {
             // validate the request data
             $validatedData = $request->validate([
-                'category_name' => 'required|string|max:25|unique:tbl_categories,category_name'
+                'category_name' => [
+                    'required',
+                    'string',
+                    'max:25',
+                    function ($attribute, $value, $fail) use ($request, $category_id) {
+                        if (Category::where('category_name', $value)
+                                     ->whereNull('deleted_at')
+                                     ->where('category_id', '!=', $category_id) // Exclude the cuurent category being edited
+                                     ->exists()) {
+                            $fail('category name has already been taken');
+                        }
+                    }
+                ]
             ]);
 
             // check if the categeory to be updated exists

@@ -26,7 +26,6 @@ class ProductController extends Controller
     }
 
     // store product data
-    // required|string|max:25|unique:tbl_products,product_name
     public function store(Request $request) {
 
         $request->validate([
@@ -76,12 +75,15 @@ class ProductController extends Controller
     }
 
     // ! show a single product
+    // ! Use eager loading to fetch product images too
     public function show($product_id) {
         $product = Product::where('product_id', $product_id)->get();
 
+        echo "<pre>";
         var_dump($product);
+        echo "</pre>";
 
-        return view('admin.products.show', ['product' => $product]);
+        return view('admin.products.show', compact('product'));
     }
 
     // show edit form
