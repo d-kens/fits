@@ -38,7 +38,7 @@ class CategoryController extends Controller
 
     // show edit form
     public function edit($category_id) {
-        $category = Category::findOrFail($category_id); // Assuming 'id' is the primary key of the category
+        $category = Category::findOrFail($category_id);
         return view('admin.categories.edit', compact('category'));
     }
 

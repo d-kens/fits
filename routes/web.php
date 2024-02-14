@@ -52,9 +52,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
     Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::delete('/product/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
-
-    // user routes
 
     // token routes
 });

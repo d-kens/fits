@@ -46,7 +46,7 @@
                                 <td>{{ $product->added_by }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
+                                        <a href="{{ route('admin.product.edit', $product->product_id) }}" type="button" class="btn btn-warning" style="margin-right: 10px">Edit</a>
                                         <form action="{{ route('admin.product.destroy', $product->product_id) }}" method="POST" type="button">
                                             @csrf
                                             @method('DELETE')
